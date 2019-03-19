@@ -1,7 +1,7 @@
 # SITE CONFIGURATION
 baseurl: ""
 url: "https://yavah.github.io"
-title: Type on Strap # site's title
+title: data snapshot # site's title
 description: "A blog to share ideas" # used by search engines
 
 
@@ -15,7 +15,7 @@ theme_settings:
 
   # Header and footer text
   header_text: ""
-  header_feature_image: assets/img/pexels/header (3).png
+  header_feature_image: #assets/img/pexels/header (3).png
   footer_text: >
     Powered by <a href="https://jekyllrb.com/">Jekyll</a> with <a href="https://github.com/sylhare/Type-on-Strap">Type on Strap</a>
 
