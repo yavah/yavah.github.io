@@ -10,12 +10,12 @@ theme_settings:
   # Meta
   title: data snapshot # blog's title
   avatar: assets/img/triangle.svg
-  favicon: #assets/favicon.ico
+  favicon: assets/img/triangle.svg
   gravatar: # Email MD5 hash
 
   # Header and footer text
   header_text: ""
-  header_feature_image: assets/img/pexels/header (2).png
+  header_feature_image: assets/img/pexels/header (3).png
   footer_text: >
     Powered by <a href="https://jekyllrb.com/">Jekyll</a> with <a href="https://github.com/sylhare/Type-on-Strap">Type on Strap</a>
 
