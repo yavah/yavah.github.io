@@ -10,7 +10,7 @@ theme_settings:
   # Meta
   title: data snapshot # blog's title
   avatar: assets/img/triangle.svg
-  favicon: assets/favicon.ico
+  favicon: assets/triangle.ico
   gravatar: # Email MD5 hash
 
   # Header and footer text
