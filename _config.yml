@@ -15,7 +15,7 @@ theme_settings:
 
   # Header and footer text
   header_text: ""
-  header_feature_image: assets/img/pexels/back2.jpg
+  header_feature_image: assets/img/pexels/analytics.jpeg
   footer_text: >
     Powered by <a href="https://jekyllrb.com/">Jekyll</a> with <a href="https://github.com/sylhare/Type-on-Strap">Type on Strap</a>
 
@@ -52,7 +52,7 @@ theme_settings:
     tumblr:
     pinterest:
     pocket:
-    reddit: true
+    reddit: false
     linkedin:
     wordpress:
     email: true
@@ -93,7 +93,7 @@ theme_settings:
   
   
 # PAGINATION
-paginate: 5
+paginate: 10 #original is 5
 paginate_path: "blog/page:num"
 
 
