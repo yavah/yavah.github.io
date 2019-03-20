@@ -14,7 +14,7 @@ theme_settings:
   gravatar: # Email MD5 hash
 
   # Header and footer text
-  header_text: "Sharing ideas and data for decision making"
+  header_text: ""
   header_feature_image: assets/img/pexels/Back.png
   footer_text: >
     Powered by <a href="https://jekyllrb.com/">Jekyll</a> with <a href="https://github.com/sylhare/Type-on-Strap">Type on Strap</a>
