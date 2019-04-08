@@ -1,0 +1,292 @@
+
+
+```python
+import pandas as pd
+import requests
+import numpy as np
+import math
+import matplotlib.pyplot as plt
+%matplotlib inline
+import seaborn as sns
+sns.set_style("whitegrid")
+```
+
+
+```python
+url = "https://gdc.bancentral.gov.do/Common/public/estadisticas/sector-real/documents/pib_gasto_2007.xls"
+resp = requests.get(url)
+with open('data.xls', 'wb') as output:
+    output.write(resp.content)
+```
+
+
+```python
+data = pd.read_excel('data.xls', sheet_name=2, header=6)
+data = data.transpose()
+```
+
+
+```python
+growth=pd.DataFrame(data.iloc[:,53]).reset_index()
+growth.columns=['Period','GDPG']
+growth.drop([0], inplace=True)
+growth['Period'] = pd.PeriodIndex(start=2007, periods=47, freq="Q")
+```
+
+
+```python
+growth['lagGDPG1'] = growth['GDPG'].shift(1)
+growth['lagGDPG4'] = growth['GDPG'].shift(4)
+```
+
+
+```python
+growth['Period']=growth.Period.values.astype('datetime64[M]')
+growth['GDPG']=growth['GDPG'].astype(float)
+growth['lagGDPG1']=growth['lagGDPG1'].astype(float)
+growth['lagGDPG4']=growth['lagGDPG4'].astype(float)
+```
+
+
+```python
+growth.info()
+```
+
+    <class 'pandas.core.frame.DataFrame'>
+    Int64Index: 47 entries, 1 to 47
+    Data columns (total 4 columns):
+    Period      47 non-null datetime64[ns]
+    GDPG        43 non-null float64
+    lagGDPG1    42 non-null float64
+    lagGDPG4    39 non-null float64
+    dtypes: datetime64[ns](1), float64(3)
+    memory usage: 1.8 KB
+
+
+
+```python
+growth.tail()
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Period</th>
+      <th>GDPG</th>
+      <th>lagGDPG1</th>
+      <th>lagGDPG4</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>43</th>
+      <td>2017-09-01</td>
+      <td>3.114340</td>
+      <td>3.117270</td>
+      <td>6.352383</td>
+    </tr>
+    <tr>
+      <th>44</th>
+      <td>2017-12-01</td>
+      <td>6.470641</td>
+      <td>3.114340</td>
+      <td>5.315341</td>
+    </tr>
+    <tr>
+      <th>45</th>
+      <td>2018-03-01</td>
+      <td>6.387080</td>
+      <td>6.470641</td>
+      <td>5.524529</td>
+    </tr>
+    <tr>
+      <th>46</th>
+      <td>2018-06-01</td>
+      <td>7.050590</td>
+      <td>6.387080</td>
+      <td>3.117270</td>
+    </tr>
+    <tr>
+      <th>47</th>
+      <td>2018-09-01</td>
+      <td>7.327064</td>
+      <td>7.050590</td>
+      <td>3.114340</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+```python
+y=sns.lineplot(x='Period', y='lagGDPG1', data=growth, label='lag1')
+z=sns.lineplot(x='Period', y='lagGDPG4', data=growth, label='lag4')
+x=sns.lineplot(x='Period', y='GDPG', data=growth, label='nolags')
+
+```
+
+
+![png](output_8_0.png)
+
+
+
+```python
+from sklearn import linear_model
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error, r2_score
+```
+
+
+```python
+growth.dropna(inplace=True)
+```
+
+
+```python
+y=growth['GDPG'].values
+```
+
+
+```python
+y = y.reshape(-1,1)
+```
+
+
+```python
+X=growth[['lagGDPG1','lagGDPG4']].values
+```
+
+
+```python
+X_train, X_test, y_train, y_test = train_test_split(X,y,test_size = 0.2, random_state=42)
+```
+
+
+```python
+ols=linear_model.LinearRegression()
+```
+
+
+```python
+ols.fit(X_train, y_train)
+```
+
+
+
+
+    LinearRegression(copy_X=True, fit_intercept=True, n_jobs=1, normalize=False)
+
+
+
+
+```python
+ols.predict(X_test)
+```
+
+
+
+
+    array([[4.73424588],
+           [6.40035977],
+           [9.3431705 ],
+           [4.30051258],
+           [7.48461546],
+           [6.48803297],
+           [9.00753545],
+           [7.02482561]])
+
+
+
+
+```python
+ols.score(X_test,y_test)
+```
+
+
+
+
+    0.7191001793756837
+
+
+
+
+```python
+y_predict = ols.predict(X_test)
+ols_mse = mean_squared_error(y_predict, y_test)
+ols_mse
+```
+
+
+
+
+    1.3427771067572454
+
+
+
+
+```python
+math.sqrt(ols_mse)
+```
+
+
+
+
+    1.158782596847763
+
+
+
+
+```python
+ols.predict([[7.327064,5.315341]])
+```
+
+
+
+
+    array([[7.16841211]])
+
+
+
+
+```python
+7+1.15
+```
+
+
+
+
+    8.15
+
+
+
+
+```python
+7-1.15
+```
+
+
+
+
+    5.85
+
+
