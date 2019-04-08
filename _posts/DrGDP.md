@@ -1,4 +1,9 @@
-
+---
+layout: post
+title: Automating consumption of SDMX using Python
+tags: [SDMX, Python]
+excerpt_separator: <!--more-->
+---
 
 ```python
 import pandas as pd
@@ -146,7 +151,7 @@ x=sns.lineplot(x='Period', y='GDPG', data=growth, label='nolags')
 ```
 
 
-![png](output_8_0.png)
+![png]("yavah.github.io/assets/img/output_8_0.png")
 
 
 
