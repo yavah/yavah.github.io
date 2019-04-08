@@ -4,7 +4,8 @@ title: Model selection for capstone project - Kiva
 tags: [Classification, Model Selection, Python]
 excerpt_separator: <!--more-->
 ---
-
+Model selection for predicting how fast someone can get funded in Kiva, based on several caractheristics of the borrower.
+<!--more-->
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
