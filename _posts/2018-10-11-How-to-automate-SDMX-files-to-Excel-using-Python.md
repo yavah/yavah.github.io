@@ -1,6 +1,6 @@
 ---
 layout: post
-title: How-to-automate-consumption-of-SDMX-files-using-Python
+title: Automating consumption of SDMX files using Python
 tags: [SDMX, Python]
 excerpt_separator: <!--more-->
 ---
