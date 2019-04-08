@@ -6,6 +6,7 @@ excerpt_separator: <!--more-->
 ---
 Model selection for predicting how fast someone can get funded in Kiva, based on several caractheristics of the borrower.
 <!--more-->
+```python
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -13,30 +14,15 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 sns.set_style("whitegrid")
 from time import time
-
-```python
-import warnings
-warnings.filterwarnings('ignore')
-```
-
-
-```python
 import sys, os
 sys.path.insert(0, os.path.abspath('..'))
 ```
-
 
 ```python
 from Ingestion.kivadataloader import KivaDataLoader
 m=KivaDataLoader()
 cleaneduploans=m.get_clean_dataframe()
 ```
-
-    Connection Failed
-    The process takes about 5 minutes to run.
-    ***** statement for get_clean_dataframe failed *****
-
-
 
 ```python
 cleaneduploans.shape
@@ -539,7 +525,7 @@ visualizer.poof()                   # Draw/show/poof the data
 ```
 
 
-![image](https://github.com/yavah/yavah.github.io/tree/master/assets/img/m1.png)
+![Image]({{"/assets/img/m1.png"}})
 
 
 
@@ -593,7 +579,7 @@ visualizer.poof()
 ```
 
 
-![image](https://github.com/yavah/yavah.github.io/tree/master/assets/img/m2.png)
+![image]({{"/master/assets/img/m2.png"}})
 
 
 
@@ -610,7 +596,7 @@ viz.poof()
 ```
 
 
-![image](https://github.com/yavah/yavah.github.io/tree/master/assets/img/m3.png)
+![Image]({{"/master/assets/img/m3.png"}})
 
 
 
@@ -626,7 +612,7 @@ viz.poof()
 ```
 
 
-![image](https://github.com/yavah/yavah.github.io/tree/master/assets/img/m4.png)
+![Image]({{"/master/assets/img/m4.png"}})
 
 
 # Train and Test
@@ -811,7 +797,7 @@ visualizer.poof()
 ```
 
 
-![image](https://github.com/yavah/yavah.github.io/tree/master/assets/img/m5.png)
+![Image]({{"/assets/img/m5.png"}})
 
 
 
@@ -826,7 +812,7 @@ g = visualizer.poof()
 ```
 
 
-![image](https://github.com/yavah/yavah.github.io/tree/master/assets/img/m6.png)
+![Image]({{"/master/assets/img/m6.png"}})
 
 
 
@@ -1043,7 +1029,7 @@ visualizer.poof()
 ```
 
 
-![image](https://github.com/yavah/yavah.github.io/tree/master/assets/img/m7.png)
+![Image]({{"/master/assets/img/m7.png"}})
 
 
 # Model 7: MLP
