@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Automating consumption of SDMX using Python
-tags: [SDMX, Python]
+title: GDP projection: Naive model
+tags: [GDP, Python]
 excerpt_separator: <!--more-->
 ---
 
