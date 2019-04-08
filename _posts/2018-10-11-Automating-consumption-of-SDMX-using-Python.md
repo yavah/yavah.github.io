@@ -8,7 +8,7 @@ The purpose of this notebook is to describe how to create a function in Python t
 
 <!--more-->
 
-The first step is to import the necessary modules to create the function sdmx. The main module used in this exercise is pandasSDMX, the rest are basic python modules.
+The first step is to import the necessary modules to create the function sdmx. The main module used in this exercise is pandaSDMX, the rest are basic python modules.
 
 ```python
 from pandasdmx import Request
