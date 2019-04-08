@@ -8,7 +8,7 @@ The purpose of this notebook is to describe how to create a function in Python t
 
 <!--more-->
 
-The first step is to import the necessary modules to create the function sdmx. The main module used in this exercise is [I'm an inline-style link with title] (https://pandasdmx.readthedocs.io/en/latest/ "pandasSDMX"), the rest are basic python modules.
+The first step is to import the necessary modules to create the function sdmx. The main module used in this exercise is ![Link] ("https://pandasdmx.readthedocs.io/en/latest/" "pandasSDMX"), the rest are basic python modules.
 
 ```python
 from pandasdmx import Request
@@ -45,7 +45,7 @@ def sdmx(country, SDMXurl):
     wd = os.getcwd()
     data.to_excel('%s.xlsx' % country)
 ```
-Once the function is created, it can be used to convert a single SDMX file from a specific country or to loop over a list of URLs and convert several SDMX files to Excel at once. In this example I created a file containing SDMX urls for the Consumer Price Index of Dominican Republic, Jamaica and Panama. 
+Once the function is created, it can be used to convert a single SDMX file from a specific country or to loop over a list of URLs and convert several SDMX files to Excel at once. In this example, I created a file containing SDMX urls for the Consumer Price Index of Dominican Republic, Jamaica and Panama. 
 
 ```python
 file=[]
@@ -57,7 +57,7 @@ for row in csv_f:
 for country, SDMXurl in file:
     sdmx(country, SDMXurl)    
 ```
-The Excel files can be access directly from the working directory.
+The Excel files can be access directly from the working directory. Here an example of each of the three files downloaded from SDMX files.
 
 ```python
 dr_cpi=pd.read_excel('dominican republic.xlsx')
