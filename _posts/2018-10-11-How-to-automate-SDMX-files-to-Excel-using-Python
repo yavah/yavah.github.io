@@ -1,4 +1,12 @@
+---
+layout: post
+title: How-to-automate-consumption-of-SDMX-files-using-Python
+tags: [SDMX, Python]
+excerpt_separator: <!--more-->
+---
+This notebook is to describe how to create a function in Python to consume SDMX files. The data can be then converted to Excel files or save in a database.
 
+<!--more-->
 
 ```python
 from pandasdmx import Request
