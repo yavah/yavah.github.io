@@ -4,7 +4,8 @@ title: GDP projection. Naive model
 tags: [GDP, Python]
 excerpt_separator: <!--more-->
 ---
-
+The goal of this notebook is to create a baseline model to predict quarterly GDP growth for Dominican Republic. The basic model uses one-quarter and four-quarter lagged GDP to make a projection for the next quarter for which data is not yet available. The GDP data is downloaded directly from the Central Bank’s website and fit into the model. 
+<!--more-->
 ```python
 import pandas as pd
 import requests
