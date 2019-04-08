@@ -8,7 +8,7 @@ The purpose of this notebook is to describe how to create a function in Python t
 
 <!--more-->
 
-The first step is to import the necessary modules to create the function sdmx. The main module used in this exercise is [pandasSDMX] (https://pandasdmx.readthedocs.io/en/latest/), the rest are basic python modules.
+The first step is to import the necessary modules to create the function sdmx. The main module used in this exercise is pandasSDMX, the rest are basic python modules.
 
 ```python
 from pandasdmx import Request
@@ -57,7 +57,7 @@ for row in csv_f:
 for country, SDMXurl in file:
     sdmx(country, SDMXurl)    
 ```
-The Excel files can be access directly from the working directory. Here an example of each of the three files downloaded from SDMX files.
+The Excel files can be access directly from the working directory.
 
 ```python
 dr_cpi=pd.read_excel('dominican republic.xlsx')
