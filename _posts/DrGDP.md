@@ -1,6 +1,6 @@
 ---
 layout: post
-title: GDP projection: Naive model
+title: GDP projection. Naive model
 tags: [GDP, Python]
 excerpt_separator: <!--more-->
 ---
