@@ -1,3 +1,10 @@
+---
+layout: post
+title: Model selection for capstone project - Kiva
+tags: [Classification, Model Selection, Python]
+excerpt_separator: <!--more-->
+---
+
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -531,7 +538,7 @@ visualizer.poof()                   # Draw/show/poof the data
 ```
 
 
-![png](output_14_0.png)
+![image](https://github.com/yavah/yavah.github.io/tree/master/assets/img/m1.png)
 
 
 
@@ -585,7 +592,7 @@ visualizer.poof()
 ```
 
 
-![png](output_19_0.png)
+![image](https://github.com/yavah/yavah.github.io/tree/master/assets/img/m2.png)
 
 
 
@@ -602,7 +609,7 @@ viz.poof()
 ```
 
 
-![png](output_20_0.png)
+![image](https://github.com/yavah/yavah.github.io/tree/master/assets/img/m3.png)
 
 
 
@@ -618,7 +625,7 @@ viz.poof()
 ```
 
 
-![png](output_21_0.png)
+![image](https://github.com/yavah/yavah.github.io/tree/master/assets/img/m4.png)
 
 
 # Train and Test
@@ -803,7 +810,7 @@ visualizer.poof()
 ```
 
 
-![png](output_41_0.png)
+![image](https://github.com/yavah/yavah.github.io/tree/master/assets/img/m5.png)
 
 
 
@@ -818,7 +825,7 @@ g = visualizer.poof()
 ```
 
 
-![png](output_42_0.png)
+![image](https://github.com/yavah/yavah.github.io/tree/master/assets/img/m6.png)
 
 
 
@@ -1035,7 +1042,7 @@ visualizer.poof()
 ```
 
 
-![png](output_64_0.png)
+![image](https://github.com/yavah/yavah.github.io/tree/master/assets/img/m7.png)
 
 
 # Model 7: MLP
