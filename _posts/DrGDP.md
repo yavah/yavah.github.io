@@ -146,7 +146,7 @@ x=sns.lineplot(x='Period', y='GDPG', data=growth, label='nolags')
 ```
 
 
-![png](output_8_0.png)
+![image](https://github.com/yavah/yavah.github.io/tree/master/assets/img/output_8_0.png)
 
 
 
