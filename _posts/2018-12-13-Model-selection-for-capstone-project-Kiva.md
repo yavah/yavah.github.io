@@ -525,7 +525,7 @@ visualizer.poof()                   # Draw/show/poof the data
 ```
 
 
-![Image]({{"/assets/img/m1.png"}})
+![Image] ({{"/assets/img/m1.png"}})
 
 
 
@@ -579,7 +579,7 @@ visualizer.poof()
 ```
 
 
-![image]({{"/master/assets/img/m2.png"}})
+![image] ({{"/master/assets/img/m2.png"}})
 
 
 
@@ -596,7 +596,7 @@ viz.poof()
 ```
 
 
-![Image]({{"/master/assets/img/m3.png"}})
+![Image] ({{"/master/assets/img/m3.png"}})
 
 
 
@@ -797,7 +797,7 @@ visualizer.poof()
 ```
 
 
-![Image]({{"/assets/img/m5.png"}})
+![Image] ({{"/assets/img/m5.png"}})
 
 
 
@@ -812,7 +812,7 @@ g = visualizer.poof()
 ```
 
 
-![Image]({{"/master/assets/img/m6.png"}})
+![Image] ({{"/master/assets/img/m6.png"}})
 
 
 
@@ -1029,7 +1029,7 @@ visualizer.poof()
 ```
 
 
-![Image]({{"/master/assets/img/m7.png"}})
+![Image] ({{"/master/assets/img/m7.png"}})
 
 
 # Model 7: MLP
