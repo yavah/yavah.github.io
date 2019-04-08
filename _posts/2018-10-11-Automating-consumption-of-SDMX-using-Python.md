@@ -4,9 +4,11 @@ title: Automating consumption of SDMX using Python
 tags: [SDMX, Python]
 excerpt_separator: <!--more-->
 ---
-This notebook is to describe how to create a function in Python to consume SDMX files. The data can be then converted to Excel files or save in a database.
+The purpose of this notebook is to describe how to create a function in Python to consume data in SDMX. Once the data is extracted it can be converted to a more user-friendly format such as Excel, csv files or it could be stored directly into a database.
 
 <!--more-->
+
+The first step is to import the necessary modules to create the function sdmx. The main module used in this exercise is [I'm an inline-style link with title] (https://pandasdmx.readthedocs.io/en/latest/ "pandasSDMX"), the rest are basic python modules.
 
 ```python
 from pandasdmx import Request
@@ -14,7 +16,7 @@ import pandas as pd
 import csv
 import os
 ```
-
+In this example, I create a function called sdmx that convert SDMX files to Excel. The same function could be used to convert files to another format or to save them into a database. The function has two arguments: country and SDMX URL.
 
 ```python
 def sdmx(country, SDMXurl):
@@ -43,7 +45,7 @@ def sdmx(country, SDMXurl):
     wd = os.getcwd()
     data.to_excel('%s.xlsx' % country)
 ```
-
+Once the function is created, it can be used to convert a single SDMX file from a specific country or to loop over a list of URLs and convert several SDMX files to Excel at once. In this example I created a file containing SDMX urls for the Consumer Price Index of Dominican Republic, Jamaica and Panama. 
 
 ```python
 file=[]
@@ -52,15 +54,10 @@ csv_f = csv.reader(f)
 next(csv_f)
 for row in csv_f:
     file.append(row)
-    
-```
-
-
-```python
 for country, SDMXurl in file:
-    sdmx(country, SDMXurl)
+    sdmx(country, SDMXurl)    
 ```
-
+The Excel files can be access directly from the working directory.
 
 ```python
 dr_cpi=pd.read_excel('dominican republic.xlsx')
