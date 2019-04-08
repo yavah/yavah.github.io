@@ -2,7 +2,7 @@
 baseurl: ""
 url: "https://yavah.github.io"
 title: data snapshot # site's title
-description: "A blog to share ideass" # used by search engines
+description: "A blog to share ideas" # used by search engines
 
 
 # THEME-SPECIFIC CONFIGURATION
