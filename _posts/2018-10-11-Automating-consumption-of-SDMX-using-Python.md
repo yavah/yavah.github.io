@@ -13,9 +13,6 @@ from pandasdmx import Request
 import pandas as pd
 import csv
 import os
-import warnings
-warnings.filterwarnings('ignore')
-
 ```
 
 
@@ -66,25 +63,189 @@ for country, SDMXurl in file:
 
 
 ```python
-panama_cpi=pd.read_excel('panama.xlsx')
-panama_cpi.head()
+dr_cpi=pd.read_excel('dominican republic.xlsx')
+dr_cpi.head(1)
 ```
 
 
 
 
 <div>
-<style>
-    .dataframe thead tr:only-child th {
-        text-align: right;
-    }
-
-    .dataframe thead th {
-        text-align: left;
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
     }
 
     .dataframe tbody tr th {
         vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>DATA_DOMAIN</th>
+      <th>REF_AREA</th>
+      <th>INDICATOR</th>
+      <th>DESCRIPTOR</th>
+      <th>COUNTERPART_AREA</th>
+      <th>FREQ</th>
+      <th>2011-01</th>
+      <th>2011-02</th>
+      <th>2011-03</th>
+      <th>2011-04</th>
+      <th>...</th>
+      <th>2018-05</th>
+      <th>2018-06</th>
+      <th>2018-07</th>
+      <th>2018-08</th>
+      <th>2018-09</th>
+      <th>2018-10</th>
+      <th>2018-11</th>
+      <th>2018-12</th>
+      <th>2019-01</th>
+      <th>2019-02</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>CPI</td>
+      <td>DO</td>
+      <td>PCPI_IX</td>
+      <td>Consumer Price Index, All items</td>
+      <td>_Z</td>
+      <td>M</td>
+      <td>101.2437</td>
+      <td>102.461</td>
+      <td>103.645</td>
+      <td>104.55</td>
+      <td>...</td>
+      <td>129.7</td>
+      <td>129.97</td>
+      <td>129.95</td>
+      <td>129.99</td>
+      <td>130.09</td>
+      <td>130.38</td>
+      <td>129.92</td>
+      <td>129.64</td>
+      <td>129.42</td>
+      <td>129.9</td>
+    </tr>
+  </tbody>
+</table>
+<p>1 rows × 104 columns</p>
+</div>
+
+
+
+
+```python
+jamaica_cpi=pd.read_excel('jamaica.xlsx')
+jamaica_cpi.head(1)
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>DATA_DOMAIN</th>
+      <th>REF_AREA</th>
+      <th>INDICATOR</th>
+      <th>DESCRIPTOR</th>
+      <th>COUNTERPART_AREA</th>
+      <th>FREQ</th>
+      <th>2016-06</th>
+      <th>2016-07</th>
+      <th>2016-08</th>
+      <th>2016-09</th>
+      <th>...</th>
+      <th>2018-05</th>
+      <th>2018-06</th>
+      <th>2018-07</th>
+      <th>2018-08</th>
+      <th>2018-09</th>
+      <th>2018-10</th>
+      <th>2018-11</th>
+      <th>2018-12</th>
+      <th>2019-01</th>
+      <th>2019-02</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>CPI</td>
+      <td>JM</td>
+      <td>PCPI_IX</td>
+      <td>Consumer Price Index, All items</td>
+      <td>_Z</td>
+      <td>M</td>
+      <td>231.0</td>
+      <td>232.1</td>
+      <td>233.1</td>
+      <td>234.2</td>
+      <td>...</td>
+      <td>246.97664</td>
+      <td>248.010975</td>
+      <td>250.446135</td>
+      <td>252.776626</td>
+      <td>255.578838</td>
+      <td>257.426564</td>
+      <td>257.387725</td>
+      <td>254.741694</td>
+      <td>254.182631</td>
+      <td>254.3392</td>
+    </tr>
+  </tbody>
+</table>
+<p>1 rows × 39 columns</p>
+</div>
+
+
+
+
+```python
+panama_cpi=pd.read_excel('panama.xlsx')
+panama_cpi.head(1)
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
     }
 </style>
 <table border="1" class="dataframe">
@@ -133,109 +294,14 @@ panama_cpi.head()
       <td>105.3</td>
       <td>105.5165</td>
       <td>105.4581</td>
-      <td>105.5270</td>
+      <td>105.527</td>
       <td>105.4892</td>
       <td>105.5743</td>
       <td>105.1135</td>
       <td>104.6655</td>
     </tr>
-    <tr>
-      <th>1</th>
-      <td>CPI</td>
-      <td>PA</td>
-      <td>PCPI_CP_01_IX</td>
-      <td>Prices, Consumer Price Index, Food and non-alc...</td>
-      <td>_Z</td>
-      <td>M</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>...</td>
-      <td>101.2</td>
-      <td>101.2</td>
-      <td>101.0</td>
-      <td>100.9833</td>
-      <td>101.2679</td>
-      <td>101.5793</td>
-      <td>101.5739</td>
-      <td>101.8383</td>
-      <td>101.8911</td>
-      <td>102.1452</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>CPI</td>
-      <td>PA</td>
-      <td>PCPI_CP_02_IX</td>
-      <td>Prices, Consumer Price Index, Alcoholic Bevera...</td>
-      <td>_Z</td>
-      <td>M</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>...</td>
-      <td>109.6</td>
-      <td>110.1</td>
-      <td>110.3</td>
-      <td>110.3543</td>
-      <td>110.6632</td>
-      <td>110.8176</td>
-      <td>111.4663</td>
-      <td>111.6671</td>
-      <td>110.9875</td>
-      <td>108.9024</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>CPI</td>
-      <td>PA</td>
-      <td>PCPI_CP_03_IX</td>
-      <td>Prices, Consumer Price Index, Clothing and foo...</td>
-      <td>_Z</td>
-      <td>M</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>...</td>
-      <td>96.9</td>
-      <td>96.9</td>
-      <td>96.4</td>
-      <td>96.3397</td>
-      <td>96.3293</td>
-      <td>96.3827</td>
-      <td>95.6729</td>
-      <td>95.6625</td>
-      <td>95.5935</td>
-      <td>95.6365</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>CPI</td>
-      <td>PA</td>
-      <td>PCPI_CP_04_IX</td>
-      <td>Prices, Consumer Price Index, Housing, Water, ...</td>
-      <td>_Z</td>
-      <td>M</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>...</td>
-      <td>101.6</td>
-      <td>101.6</td>
-      <td>101.8</td>
-      <td>101.8034</td>
-      <td>102.2432</td>
-      <td>102.3326</td>
-      <td>102.3197</td>
-      <td>102.3185</td>
-      <td>102.0680</td>
-      <td>101.8892</td>
-    </tr>
   </tbody>
 </table>
-<p>5 rows × 201 columns</p>
+<p>1 rows × 201 columns</p>
 </div>
+
