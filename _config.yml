@@ -2,7 +2,7 @@
 baseurl: ""
 url: "https://yavah.github.io"
 title: data snapshot # site's title
-description: "A blog to share ideas" # used by search engines
+description: "not a blog, not a notebook" # used by search engines
 
 
 # THEME-SPECIFIC CONFIGURATION
@@ -15,7 +15,7 @@ theme_settings:
 
   # Header and footer text
   header_text: "" 
-  header_feature_image: assets/img/pexels/analytics.jpeg
+  header_feature_image: ""
   footer_text: >
     Powered by <a href="https://jekyllrb.com/">Jekyll</a> with <a href="https://github.com/sylhare/Type-on-Strap">Type on Strap</a>
 
