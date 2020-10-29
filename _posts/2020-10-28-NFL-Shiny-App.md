@@ -10,4 +10,4 @@ The purpose of this notebook is to describe how to create a function in Python t
 
 The first step is to import the necessary modules to create the function sdmx. The main module used in this exercise is pandaSDMX, the rest are basic python modules.
 
-<iframe src="https://datasnapshot.shinyapps.io/nflshinyapp/?_ga=2.237466568.973409204.1603945817-931924317.1603945817" width="100%" height="400px"></iframe>
+<iframe src="https://datasnapshot.shinyapps.io/nflshinyapp/?_ga=2.237466568.973409204.1603945817-931924317.1603945817" frameborder="0" scrolling="no" onload="resizeIframe(this)"></iframe>
