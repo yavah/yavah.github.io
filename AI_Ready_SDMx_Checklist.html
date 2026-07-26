@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI-Ready SDMx Checklist</title>
+  <style>
+    :root {
+      --imf-blue: #17365d;
+      --mid-blue: #26547c;
+      --light-blue: #eaf3f8;
+      --section-blue: #ddebf7;
+      --grid: #d9e2ec;
+      --text: #1f2933;
+      --muted: #64748b;
+      --success: #1f7a4d;
+      --warning: #a15c00;
+      --bg: #f7fafc;
+      --white: #ffffff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Aptos, Calibri, Arial, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.45;
+    }
+    .page {
+      max-width: 1220px;
+      margin: 28px auto;
+      padding: 0 18px 40px;
+    }
+    header {
+      background: linear-gradient(135deg, var(--imf-blue), #2f75b5);
+      color: var(--white);
+      border-radius: 18px;
+      padding: 30px 34px;
+      box-shadow: 0 12px 28px rgba(23,54,93,.18);
+    }
+    header h1 {
+      margin: 0 0 8px;
+      font-size: 2rem;
+      letter-spacing: -.02em;
+    }
+    header p { margin: 0; max-width: 880px; color: #eaf3f8; font-size: 1.02rem; }
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 18px 0;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .buttons { display: flex; flex-wrap: wrap; gap: 10px; }
+    button {
+      border: 1px solid var(--grid);
+      border-radius: 10px;
+      background: var(--white);
+      color: var(--imf-blue);
+      font-weight: 700;
+      padding: 9px 13px;
+      cursor: pointer;
+      transition: all .15s ease;
+    }
+    button:hover { transform: translateY(-1px); box-shadow: 0 5px 14px rgba(23,54,93,.12); }
+    button.primary { background: var(--imf-blue); color: var(--white); border-color: var(--imf-blue); }
+    button.danger { color: #9b1c1c; }
+    .status {
+      color: var(--muted);
+      font-size: .92rem;
+    }
+    .card {
+      background: var(--white);
+      border: 1px solid var(--grid);
+      border-radius: 16px;
+      padding: 18px;
+      margin: 16px 0;
+      box-shadow: 0 6px 18px rgba(15, 23, 42, .06);
+    }
+    .how-to {
+      background: var(--light-blue);
+      border-color: #b7d7ea;
+    }
+    .how-to strong { color: var(--imf-blue); }
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(160px, 1fr));
+      gap: 12px;
+    }
+    label.meta-label {
+      display: block;
+      color: var(--imf-blue);
+      font-weight: 700;
+      font-size: .86rem;
+      margin-bottom: 4px;
+    }
+    input[type="text"], input[type="date"], textarea, select {
+      width: 100%;
+      border: 1px solid var(--grid);
+      border-radius: 9px;
+      padding: 9px 10px;
+      font: inherit;
+      background: #fff;
+    }
+    textarea { min-height: 54px; resize: vertical; }
+    .progress-wrap {
+      display: grid;
+      grid-template-columns: minmax(220px, 1fr) auto;
+      gap: 16px;
+      align-items: center;
+    }
+    .progress-bar {
+      height: 16px;
+      background: #edf2f7;
+      border-radius: 999px;
+      overflow: hidden;
+      border: 1px solid var(--grid);
+    }
+    .progress-fill {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, #2f75b5, #1f7a4d);
+      transition: width .2s ease;
+    }
+    .progress-text { color: var(--imf-blue); font-weight: 800; white-space: nowrap; }
+    .section-title {
+      margin: 24px 0 8px;
+      color: var(--imf-blue);
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .badge {
+      background: var(--section-blue);
+      color: var(--imf-blue);
+      border: 1px solid #bdd7ee;
+      border-radius: 999px;
+      padding: 4px 9px;
+      font-size: .8rem;
+      font-weight: 800;
+    }
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      overflow: hidden;
+      border: 1px solid var(--grid);
+      border-radius: 14px;
+      background: var(--white);
+    }
+    th, td {
+      border-bottom: 1px solid var(--grid);
+      border-right: 1px solid var(--grid);
+      padding: 10px;
+      vertical-align: top;
+    }
+    th:last-child, td:last-child { border-right: none; }
+    tr:last-child td { border-bottom: none; }
+    th {
+      background: var(--imf-blue);
+      color: var(--white);
+      text-align: left;
+      font-size: .88rem;
+      letter-spacing: .01em;
+    }
+    td.check-cell { text-align: center; vertical-align: middle; width: 74px; }
+    td.na-cell { text-align: center; vertical-align: middle; width: 56px; }
+    td.item { min-width: 330px; }
+    td.notes { min-width: 250px; }
+    td.owner { min-width: 145px; }
+    input[type="checkbox"] {
+      width: 22px;
+      height: 22px;
+      accent-color: var(--imf-blue);
+      cursor: pointer;
+    }
+    .achieved-row td.item { color: #14532d; }
+    .na-row td.item { color: var(--muted); font-style: italic; }
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(150px, 1fr));
+      gap: 12px;
+    }
+    .summary-box {
+      border: 1px solid var(--grid);
+      background: #fff;
+      border-radius: 12px;
+      padding: 14px;
+    }
+    .summary-box .number {
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: var(--imf-blue);
+    }
+    .summary-box .label { color: var(--muted); font-size: .86rem; }
+    .judgement-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px 22px;
+      margin-top: 10px;
+    }
+    .judgement-options label { font-weight: 700; color: var(--imf-blue); }
+    .note { color: var(--muted); font-size: .9rem; }
+    @media (max-width: 850px) {
+      .meta-grid, .summary-grid, .progress-wrap { grid-template-columns: 1fr; }
+      table, thead, tbody, th, td, tr { display: block; }
+      thead { display: none; }
+      tr { border-bottom: 1px solid var(--grid); padding: 10px; }
+      td { border: none; padding: 6px 0; }
+      td::before { content: attr(data-label); display: block; font-weight: 800; color: var(--imf-blue); margin-bottom: 2px; }
+      td.check-cell, td.na-cell { text-align: left; width: auto; }
+    }
+    @media print {
+      body { background: #fff; }
+      .page { max-width: none; margin: 0; padding: 0; }
+      header { box-shadow: none; border-radius: 0; }
+      .toolbar { display: none; }
+      .card { box-shadow: none; break-inside: avoid; }
+      textarea, input, select { border: 1px solid #999; }
+      table { page-break-inside: auto; }
+      tr { page-break-inside: avoid; page-break-after: auto; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <h1 style="text-align: center;">AI-Ready SDMx Checklist</h1>
+      <h4 style="text-align: center;">Standalone working checklist for assessing whether an SDMx-based statistical system has achieved key AI-readiness criteria.</h4>
+    </header>
+
+    <div class="toolbar">
+      <div class="buttons">
+        <button class="primary" type="button" onclick="window.print()">Print as PDF</button>
+        <button type="button" onclick="exportJSON()">Export progress</button>
+        <button type="button" onclick="importJSON()">Import progress</button>
+        <button class="danger" type="button" onclick="resetChecklist()">Reset all</button>
+      </div>
+      <div class="status" id="saveStatus">Progress is saved automatically in this browser.</div>
+    </div>
+
+    <section class="card how-to">
+      <strong>How to use:</strong> For each item, tick <strong>Achieved</strong> when completed and supported by evidence. Use <strong>Notes</strong> to record links, examples, comments, or follow-up actions. Use <strong>N/A</strong> only when the item is not applicable to the assessed system or data domain.
+    </section>
+
+    <section class="card">
+      <div class="meta-grid">
+        <div><label class="meta-label" for="systemName">System / data domain</label><input id="systemName" type="text" data-save="meta" placeholder="e.g., CPI dissemination system" /></div>
+        <div><label class="meta-label" for="assessor">Assessor</label><input id="assessor" type="text" data-save="meta" placeholder="Name" /></div>
+        <div><label class="meta-label" for="assessmentDate">Assessment date</label><input id="assessmentDate" type="date" data-save="meta" /></div>
+        <div><label class="meta-label" for="versionRelease">Version</label><input id="versionRelease" type="text" data-save="meta" placeholder="e.g., v1.0" /></div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="progress-wrap">
+        <div class="progress-bar" aria-label="Checklist progress"><div class="progress-fill" id="progressFill"></div></div>
+        <div class="progress-text" id="progressText">0 of 20 achieved</div>
+      </div>
+    </section>
+
+    <section id="checklist"></section>
+
+    <section class="card">
+      <h2 class="section-title">Completion summary</h2>
+      <div class="summary-grid">
+        <div class="summary-box"><div class="number" id="totalItems">20</div><div class="label">Total items assessed</div></div>
+        <div class="summary-box"><div class="number" id="achievedItems">0</div><div class="label">Items achieved</div></div>
+        <div class="summary-box"><div class="number" id="naItems">0</div><div class="label">Items marked N/A</div></div>
+        <div class="summary-box"><div class="number" id="openItems">20</div><div class="label">Open follow-up items</div></div>
+      </div>
+      <h3 class="section-title">Overall readiness assesment</h3>
+      <div class="judgement-options">
+        <label><input type="radio" name="judgement" value="Not SDMx" data-save="judgement" /> Not SDMx</label>
+        <label><input type="radio" name="judgement" value="SDMx" data-save="judgement" /> SDMx</label>
+        <label><input type="radio" name="judgement" value="SDMx APIs compliant" data-save="judgement" /> SDMx APIs complaint</label>
+        <label><input type="radio" name="judgement" value="AI-ready" data-save="judgement" /> AI-ready</label>
+        <label><input type="radio" name="judgement" value="AI-optimized" data-save="judgement" /> AI-optimized</label>
+      </div>
+      <p class="note">Tip: this page stores progress locally in the browser. Use “Export progress” if you want to save or share the completed state separately.</p>
+    </section>
+  </main>
+
+  <script>
+    const STORAGE_KEY = 'aiReadySDMxChecklist.v1';
+    const checklistData = [
+      { area: '1. Data structure and SDMx modelling', items: [
+        'All priority datasets are modelled using valid SDMx Data Structure Definitions (DSDs).',
+        'Concepts, dimensions, measures, attributes, codelists, and dataflows are clearly defined.',
+        'Modelling choices are consistent across related datasets and follow SDMx guidelines.',
+        'Reusable SDMx artefacts are used wherever appropriate.'
+      ]},
+      { area: '2. Metadata and semantics', items: [
+        'All priority datasets are modelled using valid SDMx Metadata Structure Definitions (MSDs).',
+        'Statistical concepts are clearly defined.',
+        'Units, scales, adjustment status, and observation status are explicit.',
+        'Reference metadata are available for methodology, coverage, sources, and limitations.'
+      ]},
+      { area: '3. Access and discoverability', items: [
+        'Data and metadata are available through documented SDMx APIs.',
+        'Dataflows are searchable and understandable by AI agents.',
+        'Persistent identifiers are available for datasets and SDMx artefacts.',
+        'AI agents can retrieve authoritive data and metadata directly from source systems.'
+      ]},
+      { area: '4. Provenance and versioning', items: [
+        'The source agency is clearly identified.',
+        'Publication dates, update dates, and revision histories are available.',
+        'Changes to SDMx artefacts are versioned.',
+        'Users can reproduce or trace data used in AI outputs.'
+      ]},
+      { area: '5. AI integration', items: [
+        'AI agents can interpret the dataset without relying on undocumented assumptions.',
+        'AI agents can retrieve both data and explanatory metadata.',
+        'AI-generated answers can cite authoritative sources.',
+        'The system can support natural-language, retrieval, or agentic workflows.'
+      ]}
+    ];
+
+    function getState() {
+      try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
+      catch { return {}; }
+    }
+    function setState(state) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      document.getElementById('saveStatus').textContent = 'Saved locally at ' + new Date().toLocaleTimeString();
+    }
+    function updateField(id, value) {
+      const state = getState();
+      state[id] = value;
+      setState(state);
+      updateSummary();
+    }
+    function renderChecklist() {
+      const container = document.getElementById('checklist');
+      let itemIndex = 0;
+      container.innerHTML = checklistData.map(section => {
+        const rows = section.items.map(item => {
+          const id = 'item' + itemIndex++;
+          return `
+            <tr id="row-${id}">
+              <td class="item" data-label="Assessment item">${item}</td>
+              <td class="check-cell" data-label="Achieved"><input type="checkbox" id="${id}-achieved" aria-label="Achieved: ${item}" onchange="handleCheck('${id}', 'achieved')" /></td>
+              <td class="na-cell" data-label="N/A"><input type="checkbox" id="${id}-na" aria-label="Not applicable: ${item}" onchange="handleCheck('${id}', 'na')" /></td>
+              <td class="notes" data-label="Notes"><textarea id="${id}-notes" placeholder="Evidence, link, comment, or follow-up action" oninput="updateField(this.id, this.value)"></textarea></td>
+            </tr>`;
+        }).join('');
+        return `
+          <h2 class="section-title"><span class="badge">${section.items.length} items</span>${section.area}</h2>
+          <table style="table-layout: fixed; width: 100%;">
+            <colgroup>
+              <col style="width: 50%;"> <!-- First column -->
+              <col style="width: 10%;"> <!-- Second column -->
+              <col style="width: 10%;"> <!-- Third column -->
+              <col style="width: 30%;"> <!-- Third column -->
+            </colgroup>
+            <thead><tr><th>Assessment item</th><th>Achieved</th><th>N/A</th><th>Notes</th></thead>
+            <tbody>${rows}</tbody>
+          </table>`;
+      }).join('');
+      loadState();
+      updateSummary();
+    }
+    function handleCheck(id, type) {
+      const achieved = document.getElementById(id + '-achieved');
+      const na = document.getElementById(id + '-na');
+      if (type === 'achieved' && achieved.checked) na.checked = false;
+      if (type === 'na' && na.checked) achieved.checked = false;
+      updateField(id + '-achieved', achieved.checked);
+      updateField(id + '-na', na.checked);
+      markRow(id);
+    }
+    function markRow(id) {
+      const row = document.getElementById('row-' + id);
+      if (!row) return;
+      row.classList.toggle('achieved-row', document.getElementById(id + '-achieved').checked);
+      row.classList.toggle('na-row', document.getElementById(id + '-na').checked);
+    }
+    function loadState() {
+      const state = getState();
+      document.querySelectorAll('[data-save="meta"]').forEach(el => { if (state[el.id] !== undefined) el.value = state[el.id]; });
+      document.querySelectorAll('textarea, input[type="text"]').forEach(el => { if (state[el.id] !== undefined) el.value = state[el.id]; });
+      document.querySelectorAll('input[type="checkbox"]').forEach(el => { if (state[el.id] !== undefined) el.checked = !!state[el.id]; });
+      document.querySelectorAll('input[name="judgement"]').forEach(el => { if (state.judgement === el.value) el.checked = true; });
+      for (let i = 0; i < 20; i++) markRow('item' + i);
+    }
+    function updateSummary() {
+      const total = 20;
+      let achieved = 0, na = 0;
+      for (let i = 0; i < total; i++) {
+        if (document.getElementById('item' + i + '-achieved')?.checked) achieved++;
+        if (document.getElementById('item' + i + '-na')?.checked) na++;
+      }
+      const open = total - achieved - na;
+      document.getElementById('totalItems').textContent = total;
+      document.getElementById('achievedItems').textContent = achieved;
+      document.getElementById('naItems').textContent = na;
+      document.getElementById('openItems').textContent = open;
+      document.getElementById('progressText').textContent = `${achieved} of ${total} achieved`;
+      document.getElementById('progressFill').style.width = `${Math.round((achieved / total) * 100)}%`;
+    }
+    function resetChecklist() {
+      if (!confirm('Reset all checklist entries and local progress?')) return;
+      localStorage.removeItem(STORAGE_KEY);
+      document.querySelectorAll('input, textarea').forEach(el => {
+        if (el.type === 'checkbox' || el.type === 'radio') el.checked = false;
+        else el.value = '';
+      });
+      for (let i = 0; i < 20; i++) markRow('item' + i);
+      updateSummary();
+      document.getElementById('saveStatus').textContent = 'Checklist reset.';
+    }
+    function exportJSON() {
+      const state = getState();
+      const blob = new Blob([JSON.stringify(state, null, 2)], {type: 'application/json'});
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'ai-ready-SDMx-checklist-progress.json';
+      a.click();
+      URL.revokeObjectURL(a.href);
+    }
+    function importJSON() {
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.accept = 'application/json';
+      input.onchange = () => {
+        const file = input.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = () => {
+          try {
+            const state = JSON.parse(reader.result);
+            setState(state);
+            loadState();
+            updateSummary();
+          } catch (e) { alert('Could not import progress. Please select a valid JSON export.'); }
+        };
+        reader.readAsText(file);
+      };
+      input.click();
+    }
+    document.addEventListener('change', e => {
+      if (e.target.matches('input[name="judgement"]')) updateField('judgement', e.target.value);
+      if (e.target.matches('[data-save="meta"]')) updateField(e.target.id, e.target.value);
+    });
+    renderChecklist();
+  </script>
+</body>
+</html>
