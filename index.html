@@ -203,6 +203,29 @@
     }
     .judgement-options label { font-weight: 700; color: var(--imf-blue); }
     .note { color: var(--muted); font-size: .9rem; }
+    .calculated-assessment {
+      margin-top: 12px;
+      padding: 14px 16px;
+      border: 1px solid #b7d7ea;
+      background: #eaf3f8;
+      border-radius: 12px;
+    }
+    .calculated-assessment .level {
+      color: var(--imf-blue);
+      font-size: 1.15rem;
+      font-weight: 900;
+      margin-bottom: 4px;
+    }
+    .calculated-assessment .description {
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .calculated-assessment .basis {
+      color: var(--muted);
+      font-size: .9rem;
+    }
+    .judgement-options input[disabled] { cursor: not-allowed; }
+
     @media (max-width: 850px) {
       .meta-grid, .summary-grid, .progress-wrap { grid-template-columns: 1fr; }
       table, thead, tbody, th, td, tr { display: block; }
@@ -271,13 +294,18 @@
         <div class="summary-box"><div class="number" id="naItems">0</div><div class="label">Items marked N/A</div></div>
         <div class="summary-box"><div class="number" id="openItems">20</div><div class="label">Open follow-up items</div></div>
       </div>
-      <h3 class="section-title">Overall readiness assesment</h3>
-      <div class="judgement-options">
-        <label><input type="radio" name="judgement" value="Not SDMx" data-save="judgement" /> Not SDMx</label>
-        <label><input type="radio" name="judgement" value="SDMx" data-save="judgement" /> SDMx</label>
-        <label><input type="radio" name="judgement" value="SDMx APIs compliant" data-save="judgement" /> SDMx APIs complaint</label>
-        <label><input type="radio" name="judgement" value="AI-ready" data-save="judgement" /> AI-ready</label>
-        <label><input type="radio" name="judgement" value="AI-optimized" data-save="judgement" /> AI-optimized</label>
+      <h3 class="section-title">AI-readiness assessment</h3>
+      <div class="calculated-assessment" aria-live="polite">
+        <div class="level" id="calculatedLevel">Level 0 — Not SDMx</div>
+        <div class="description" id="calculatedDescription">Data are published but not structured for automated interpretation.</div>
+        <div class="basis" id="calculatedBasis">Complete the checklist sections above to update the maturity assessment automatically.</div>
+      </div>
+      <div class="judgement-options" aria-label="Automatically calculated maturity level">
+        <label><input type="radio" name="judgement" value="Level 0 — Not SDMx" disabled /> Level 0 — Not SDMx</label>
+        <label><input type="radio" name="judgement" value="Level 1 — SDMx files" disabled /> Level 1 — SDMx files</label>
+        <label><input type="radio" name="judgement" value="Level 2 — SDMx APIs-compliant" disabled /> Level 2 — SDMx APIs-compliant</label>
+        <label><input type="radio" name="judgement" value="Level 3 — AI-ready" disabled /> Level 3 — AI-ready</label>
+        <label><input type="radio" name="judgement" value="Level 4 — AI-optimized" disabled /> Level 4 — AI-optimized</label>
       </div>
       <p class="note">Tip: this page stores progress locally in the browser. Use “Export progress” if you want to save or share the completed state separately.</p>
     </section>
@@ -385,6 +413,72 @@
       document.querySelectorAll('input[name="judgement"]').forEach(el => { if (state.judgement === el.value) el.checked = true; });
       for (let i = 0; i < 20; i++) markRow('item' + i);
     }
+    function sectionSatisfied(sectionIndex) {
+      const start = sectionIndex * 4;
+      const end = start + 4;
+      for (let i = start; i < end; i++) {
+        const achieved = document.getElementById('item' + i + '-achieved')?.checked;
+        const na = document.getElementById('item' + i + '-na')?.checked;
+        if (!achieved && !na) return false;
+      }
+      return true;
+    }
+    function calculateReadinessLevel() {
+      const s1 = sectionSatisfied(0); // Data structure and SDMx modelling
+      const s2 = sectionSatisfied(1); // Metadata and semantics
+      const s3 = sectionSatisfied(2); // Access and discoverability
+      const s4 = sectionSatisfied(3); // Provenance and versioning
+      const s5 = sectionSatisfied(4); // AI integration
+      const levels = {
+        level0: {
+          value: 'Level 0 — Not SDMx',
+          description: 'Data are published but not structured for automated interpretation.',
+          basis: 'Section 1 is not yet complete, so the system is not assessed as SDMx-structured.'
+        },
+        level1: {
+          value: 'Level 1 — SDMx files',
+          description: 'Data are available in SDMx, but an SDMx API has not been set up.',
+          basis: 'Section 1 is complete, but the API/access criteria are not yet complete.'
+        },
+        level2: {
+          value: 'Level 2 — SDMx APIs-compliant',
+          description: 'Data are modelled using SDMx structures and exposed via APIs.',
+          basis: 'Sections 1 and 3 are complete. Metadata, provenance, and AI-integration criteria may still be incomplete.'
+        },
+        level3: {
+          value: 'Level 3 — AI-ready',
+          description: 'Data and metadata are discoverable, validated, contextualized, versioned, and API-accessible.',
+          basis: 'Sections 1 through 4 are complete. AI-native workflow integration is not yet fully complete.'
+        },
+        level4: {
+          value: 'Level 4 — AI-optimized',
+          description: 'The system actively supports AI agents, natural-language interfaces, trusted catalogs, and automated context retrieval.',
+          basis: 'All five checklist sections are complete.'
+        }
+      };
+      if (s1 && s2 && s3 && s4 && s5) return levels.level4;
+      if (s1 && s2 && s3 && s4) return levels.level3;
+      if (s1 && s3) return levels.level2;
+      if (s1) return levels.level1;
+      return levels.level0;
+    }
+    function updateReadinessAssessment() {
+      const level = calculateReadinessLevel();
+      const levelEl = document.getElementById('calculatedLevel');
+      const descEl = document.getElementById('calculatedDescription');
+      const basisEl = document.getElementById('calculatedBasis');
+      if (levelEl) levelEl.textContent = level.value;
+      if (descEl) descEl.textContent = level.description;
+      if (basisEl) basisEl.textContent = level.basis;
+      document.querySelectorAll('input[name="judgement"]').forEach(el => {
+        el.checked = (el.value === level.value);
+      });
+      const state = getState();
+      state.judgement = level.value;
+      state.judgementDescription = level.description;
+      state.judgementBasis = level.basis;
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    }
     function updateSummary() {
       const total = 20;
       let achieved = 0, na = 0;
@@ -399,6 +493,7 @@
       document.getElementById('openItems').textContent = open;
       document.getElementById('progressText').textContent = `${achieved} of ${total} achieved`;
       document.getElementById('progressFill').style.width = `${Math.round((achieved / total) * 100)}%`;
+      updateReadinessAssessment();
     }
     function resetChecklist() {
       if (!confirm('Reset all checklist entries and local progress?')) return;
@@ -441,7 +536,6 @@
       input.click();
     }
     document.addEventListener('change', e => {
-      if (e.target.matches('input[name="judgement"]')) updateField('judgement', e.target.value);
       if (e.target.matches('[data-save="meta"]')) updateField(e.target.id, e.target.value);
     });
     renderChecklist();
